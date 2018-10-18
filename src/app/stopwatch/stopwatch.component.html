@@ -1,0 +1,13 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">For Time</h1>
+  </div>
+  <div class="container notification">
+    {{ time }}
+  </div>
+  <div class="buttons">
+    <button class="button is-success is-medium is-rounded" (click)="onStart();">START</button>
+    <button class="button is-danger is-medium is-rounded" (click)="onStop();">STOP</button>
+    <button class="button is-medium is-rounded" (click)="onReset();">RESET</button>
+  </div>
+</section>
