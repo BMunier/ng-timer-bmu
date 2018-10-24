@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 
 @Component({
-  selector: 'app-amrap',
-  templateUrl: './amrap.component.html',
-  styleUrls: ['./amrap.component.css']
+  selector: 'app-emom',
+  templateUrl: './emom.component.html',
+  styleUrls: ['./emom.component.css']
 })
-export class AmrapComponent implements OnInit {
+export class EmomComponent implements OnInit {
   time: string;
   timeAtBegining: string;
   minutesChosen: number;
-  secondsChosen: number;
+  interval: number;
   secondsToGo: number;
   started: boolean;
   secondsCounter = interval(1000);
@@ -22,8 +22,6 @@ export class AmrapComponent implements OnInit {
 
   ngOnInit() {
     this.isActiveBoolean = true;
-    this.minutesChosen = 0;
-    this.secondsChosen = 0;
     this.timeAtBegining = '00:00';
     this.time = '00:00';
     this.secondsToGo = 0;
@@ -35,7 +33,11 @@ export class AmrapComponent implements OnInit {
         return;
       }
       this.secondsToGo--;
+      if (this.secondsToGo % 60 === 0) {
+        this.playAudio();
+      }
       this.time = this.computeTimeToDisplay();
+
       this.computeProgress();
 
       if (this.secondsToGo === 0) {
@@ -80,7 +82,7 @@ export class AmrapComponent implements OnInit {
   }
 
   computeSecondsToGo() {
-    this.secondsToGo = ((this.minutesChosen * 60) + this.secondsChosen);
+    this.secondsToGo = ((this.minutesChosen * 60));
     this.initialSecondsToGo = this.secondsToGo;
   }
 
@@ -102,4 +104,5 @@ export class AmrapComponent implements OnInit {
   computeProgress() {
     this.progress = (100 * (this.initialSecondsToGo - this.secondsToGo)) / this.initialSecondsToGo;
   }
+
 }
