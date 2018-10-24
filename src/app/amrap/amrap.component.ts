@@ -7,14 +7,14 @@ import { interval } from 'rxjs';
   styleUrls: ['./amrap.component.css']
 })
 export class AmrapComponent implements OnInit {
-  private time: string;
-  private timeAtBegining: string;
-  private minutesChosen: number;
-  private secondsChosen: number;
-  private secondsToGo: number;
-  private started: boolean;
-  private secondsCounter = interval(1000);
-  private isActiveBoolean: boolean;
+  time: string;
+  timeAtBegining: string;
+  minutesChosen: number;
+  secondsChosen: number;
+  secondsToGo: number;
+  started: boolean;
+  secondsCounter = interval(1000);
+  isActiveBoolean: boolean;
 
   constructor() { }
 

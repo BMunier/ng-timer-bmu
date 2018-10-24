@@ -8,7 +8,7 @@ import { interval } from 'rxjs';
 })
 export class StopwatchComponent implements OnInit {
 
-  private time: string;
+  time: string;
   private tenth: 0;
   private started: boolean;
   private secondsCounter = interval(100);
