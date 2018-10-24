@@ -7,10 +7,13 @@ import { AppComponent } from './app.component';
 import { StopwatchComponent } from './stopwatch/stopwatch.component';
 import { MyMaterialModuleModule } from './my-material-module/my-material-module.module';
 import { HomeComponent } from './home/home.component';
+import { AmrapComponent } from './amrap/amrap.component';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'stopwatch', component: StopwatchComponent },
+  { path: 'amrap', component: AmrapComponent },
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -21,7 +24,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     StopwatchComponent,
-    HomeComponent
+    HomeComponent,
+    AmrapComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -30,7 +34,8 @@ const appRoutes: Routes = [
     ),
     BrowserModule,
     BrowserAnimationsModule,
-    MyMaterialModuleModule
+    MyMaterialModuleModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
