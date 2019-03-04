@@ -1,0 +1,32 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title is-1">AMRAP - {{timeAtBegining}}</h1>
+  </div>
+  <div class="container">
+    <progress class="progress is-warning" value="{{ progress }}" max="100">75%</progress>
+  </div>
+  <div class="container notification has-text-centered title is-2">
+    {{ time }}
+  </div>
+  <div class="buttons container level-item">
+    <button class="button is-success is-medium is-rounded" (click)="onStart();">START</button>
+    <button class="button is-danger is-medium is-rounded" (click)="onStop();">STOP</button>
+    <button class="button is-medium is-rounded" (click)="onReset();">SET TIME</button>
+  </div>
+</section>
+<div class="modal is-active" [ngClass]="{'is-active': isActiveBoolean}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">AMRAP - Set your time</p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <input type="number" class="input" [(ngModel)]="minutesChosen" placeholder="Minutes">
+      <input type="number" class="input" [(ngModel)]="secondsChosen" placeholder="Seconds">
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="saveTime()">Save</button>
+    </footer>
+  </div>
+</div>

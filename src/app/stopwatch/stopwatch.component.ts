@@ -8,7 +8,7 @@ import { interval } from 'rxjs';
 })
 export class StopwatchComponent implements OnInit {
 
-  private time: string;
+  time: string;
   private tenth: 0;
   private started: boolean;
   private secondsCounter = interval(100);
@@ -19,9 +19,11 @@ export class StopwatchComponent implements OnInit {
     this.time = '00:00:00';
     this.tenth = 0;
     this.started = false;
-    
+
     this.secondsCounter.subscribe(n => {
-      if(!this.started) return;
+      if (!this.started) {
+        return;
+      }
       this.tenth++;
       this.time = Math.floor(this.tenth / 600).toString() + ':' + Math.floor((this.tenth / 10) % 60).toString() + ":" + (this.tenth % 10).toString() + "0";
     });
@@ -29,15 +31,14 @@ export class StopwatchComponent implements OnInit {
 
 
   onStart(){
-    this.started = true;     
+    this.started = true;
   }
 
-  onStop(){
-    console.log('stop')
+  onStop() {
     this.started = false;
   }
 
-  onReset(){
+  onReset() {
     this.time = '00:00:00';
     this.tenth = 0;
   }
