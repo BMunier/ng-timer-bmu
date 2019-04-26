@@ -11,6 +11,11 @@ import { AmrapComponent } from './amrap/amrap.component';
 import { FormsModule } from '@angular/forms';
 import { EmomComponent } from './emom/emom.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'stopwatch', component: StopwatchComponent },
@@ -38,9 +43,11 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MyMaterialModuleModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
