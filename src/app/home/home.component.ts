@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { DatabaseServicesService } from '../database-services.service';
+import { DatabaseServicesService } from '../database/database-services.service';
 import { AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Workout } from '../workout';
+import { Workout } from '../workout/workout';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { DialogWorkoutComponent } from '../dialog-workout/dialog-workout.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,8 @@ export class HomeComponent implements OnInit {
   workouts: Workout[];
   columnsToDisplay = ['chronoType', 'executionDate', 'timeMiliseconds'];
 
-  constructor(private dbServices: DatabaseServicesService) { }
+  constructor(private dbServices: DatabaseServicesService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     const workout = {
@@ -29,10 +32,17 @@ export class HomeComponent implements OnInit {
     /* this.dbServices.addWorkout(workout); */
     this.dbServices.listWorkouts().subscribe(data => {
       this.workouts = data;
-      this.workouts.forEach(w => {
-        console.log(w.chronoType);
-      });
     });
   }
 
+  openDialog(workout: Workout): void {
+    const dialogRef = this.dialog.open(DialogWorkoutComponent, {
+      width: '500px',
+      data: workout
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+  
 }
