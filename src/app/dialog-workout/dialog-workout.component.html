@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{this.workout.executionDate.toDate() | date}} - {{this.workout.chronoType}}</h2>
+<mat-dialog-content>
+  <div>
+    <label>Time <span>{{this.displayTime(this.workout.timeMiliseconds)}}</span></label>
+  </div>
+  <div>
+    <label>Description <span>{{this.workout.description}}</span> </label>
+  </div>
+  <div>
+      <label>Comment <span>{{this.workout.comment}}</span></label> 
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+  <button mat-button (click)="save()">Save</button>
+</div>

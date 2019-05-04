@@ -15,6 +15,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DialogWorkoutComponent } from './dialog-workout/dialog-workout.component';
+import {MomentModule} from 'angular2-moment/moment.module';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     StopwatchComponent,
     HomeComponent,
     AmrapComponent,
-    EmomComponent
+    EmomComponent,
+    DialogWorkoutComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -45,9 +48,11 @@ const appRoutes: Routes = [
     MyMaterialModuleModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MomentModule
   ],
   providers: [AngularFirestore],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogWorkoutComponent]
 })
 export class AppModule { }

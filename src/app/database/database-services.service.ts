@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Workout } from './workout';
+import { Workout } from '../workout/workout';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,6 @@ export class DatabaseServicesService {
   }
 
   listWorkouts() {
-    console.log('Dans list workouts');
     return this.firestore.collection<Workout>('workouts').valueChanges();
   }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { DatabaseServicesService } from '../database-services.service';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Workout } from '../workout';
-import { Observable } from 'rxjs';
+import { DatabaseServicesService } from '../database/database-services.service';
+import { Workout } from '../workout/workout';
+import { MatDialog } from '@angular/material';
+import { DialogWorkoutComponent } from '../dialog-workout/dialog-workout.component';
+import * as moment from "moment";
+
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   workouts: Workout[];
   columnsToDisplay = ['chronoType', 'executionDate', 'timeMiliseconds'];
 
-  constructor(private dbServices: DatabaseServicesService) { }
+  constructor(private dbServices: DatabaseServicesService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     const workout = {
@@ -29,10 +31,24 @@ export class HomeComponent implements OnInit {
     /* this.dbServices.addWorkout(workout); */
     this.dbServices.listWorkouts().subscribe(data => {
       this.workouts = data;
-      this.workouts.forEach(w => {
-        console.log(w.chronoType);
-      });
     });
   }
 
+  openDialog(workout: Workout): void {
+    const dialogRef = this.dialog.open(DialogWorkoutComponent, {
+      width: '500px',
+      data: workout
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  displayTime(timeMiliseconds: number): string{
+    const tempTime = moment.duration(timeMiliseconds);
+    const seconds = tempTime.seconds().toString().length > 1 ? tempTime.seconds() : '0' + tempTime.seconds();
+    const timeToDisplay = tempTime.minutes() + ':' + seconds;
+    return timeToDisplay;
+  }
+  
 }
