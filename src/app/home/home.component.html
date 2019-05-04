@@ -34,7 +34,7 @@
               </ng-container>
               <ng-container matColumnDef="timeMiliseconds">
                   <th mat-header-cell *matHeaderCellDef> Time </th>
-                  <td mat-cell *matCellDef="let workout"> {{workout.timeMiliseconds}} </td>
+                  <td mat-cell *matCellDef="let workout"> {{this.displayTime(workout.timeMiliseconds)}} </td>
                 </ng-container>
           <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
           <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="openDialog(myRowData)"></tr>

@@ -16,6 +16,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DialogWorkoutComponent } from './dialog-workout/dialog-workout.component';
+import {MomentModule} from 'angular2-moment/moment.module';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
     MyMaterialModuleModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MomentModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent],
